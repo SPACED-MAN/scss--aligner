@@ -1,0 +1,50 @@
+// Vertical and Horizontal alignment
+// Author: Tyler Shingleton
+// Inspired by: https://css-tricks.com/snippets/sass/centering-mixin/
+// Examples:
+// .parent {
+//		position: relative;
+// }
+// .child-1 {
+// 		@include aligner; // Vertically and horizontally center this content inside of .parent
+// }
+// .child-2 {
+// 		@include aligner("right", "bottom"); // Place this content in the bottom right corner of .parent
+// }
+@mixin aligner($h-orientation: null, $v-orientation: null) {
+
+	@if ($h-orientation == "left") {
+		position: absolute;
+		left: 0;
+	} @else if ($h-orientation == "right") {
+		position: absolute;
+		right: 0;
+	} @else if (($h-orientation == "center") and ($v-orientation != "middle") and ($v-orientation != null)) {
+		position: relative;
+		margin: 0 auto;
+	}
+
+	@if ($v-orientation == "top") {
+		vertical-align: top;
+	} @else if ($v-orientation == "bottom") {
+		height: auto;
+		min-height: auto;
+		position: absolute;
+		bottom: 0;
+	} @else if (($v-orientation == "middle") and ($h-orientation != "center") and ($h-orientation != null)) {
+		height: auto;
+		min-height: auto;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	@if ((($h-orientation == null) and ($v-orientation == null)) or (($h-orientation == 'center') and ($v-orientation == 'middle'))) {	
+		height: auto;
+		min-height: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
