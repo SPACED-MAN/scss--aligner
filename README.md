@@ -1,2 +1,2 @@
 # scss--aligner
-Vertically and Horizontally center anything relative to its container
+Vertically and horizontally center anything relative to its container
